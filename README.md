@@ -29,6 +29,8 @@ Some prompts to answer:
 
 You can include a simple diagram or bullet list if helpful.
 
+Each Song in my system has features such as genre, mood, energy, and tempo. The UserProfile stores the listener’s favorite genres and artists, preferred moods and energy levels, and listening history, such as liked or recently played songs. The Recommender compares a song’s features with the user’s preferences, adds points for matches, and adjusts the score based on listening history. It then sorts songs from highest to lowest score and recommends the top-scoring songs
+
 ---
 
 ## Getting Started
