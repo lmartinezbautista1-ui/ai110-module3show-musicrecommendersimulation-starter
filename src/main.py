@@ -15,7 +15,6 @@ from src.recommender import load_songs, recommend_songs
 def main() -> None:
     """Load the song catalog, score it against the taste profile, and print ranked recommendations."""
     songs = load_songs("data/songs.csv") 
-
     # Taste profile
     user_prefs = {
         "favorite_genre": "lofi",
@@ -34,7 +33,7 @@ def main() -> None:
     print(f"\nTop {len(recommendations)} recommendations\n{line}")
     for rank, (song, score, explanation) in enumerate(recommendations, start=1):
         print(f"{rank:>2}. {song['title']} — {song['artist']}")
-        print(f"    [{song['genre']} / {song['mood']}]  Score: {score:.2f} / 9.00")
+        print(f"    [{song['genre']} / {song['mood']}]  Score: {score:.2f} / 8.00")
         if explanation:
             for reason in explanation.split("; "):
                 print(f"      • {reason}")

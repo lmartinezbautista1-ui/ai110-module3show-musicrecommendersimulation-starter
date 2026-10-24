@@ -68,9 +68,8 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     Scores a single song against user preferences.
     Required by recommend_songs() and src/main.py
 
-    Algorithm Recipe (max score = 9.0):
+    Algorithm Recipe (max score = 8.0):
       - genre exact match:          +2.0
-      - mood exact match:           +1.0
       - energy:   2.0 * (1 - |diff| / 0.5)
       - tempo:    1.0 * (1 - |diff| / 50)   (BPM tolerance of 50)
       - valence:  1.0 * (1 - |diff| / 0.5)
@@ -94,9 +93,10 @@ def score_song(user_prefs: Dict, song: Dict) -> Tuple[float, List[str]]:
     if fav_genre is not None and song["genre"] == fav_genre:
         score += 2.0
         reasons.append(f"genre match: {song['genre']} (+2.0)")
-    if fav_mood is not None and song["mood"] == fav_mood:
-        score += 1.0
-        reasons.append(f"mood match: {song['mood']} (+1.0)")
+    # TEMPORARILY DISABLED for testing: mood exact-match scoring
+    # if fav_mood is not None and song["mood"] == fav_mood:
+    #     score += 1.0
+    #     reasons.append(f"mood match: {song['mood']} (+1.0)")
 
     # Numeric similarity, graded and floored at 0
     numeric_rules = [
