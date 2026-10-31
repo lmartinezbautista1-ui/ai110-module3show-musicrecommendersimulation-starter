@@ -43,8 +43,48 @@ class Recommender:
         return self.songs[:k]
 
     def explain_recommendation(self, user: UserProfile, song: Song) -> str:
-        # TODO: Implement explanation logic
-        return "Explanation placeholder"
+        """
+        Builds a human-readable explanation of why `song` was recommended
+        to `user`, listing each preference it matches.
+        """
+        reasons: List[str] = []
+
+        # Genre preference
+        if song.genre == user.favorite_genre:
+            reasons.append(f"it matches your favorite genre '{song.genre}'")
+
+        # Mood preference
+        if song.mood == user.favorite_mood:
+            reasons.append(f"its mood is '{song.mood}', which you love")
+
+        # Energy closeness to the user's target
+        energy_diff = abs(song.energy - user.target_energy)
+        if energy_diff <= 0.25:
+            reasons.append(
+                f"its energy ({song.energy:g}) is very close to your target ({user.target_energy:g})"
+            )
+        elif energy_diff <= 0.5:
+            reasons.append(
+                f"its energy ({song.energy:g}) is reasonably close to your target ({user.target_energy:g})"
+            )
+
+        # Acousticness preference
+        if user.likes_acoustic and song.acousticness >= 0.5:
+            reasons.append(
+                f"it is acoustic (acousticness {song.acousticness:g}), which you enjoy"
+            )
+        elif not user.likes_acoustic and song.acousticness < 0.5:
+            reasons.append("it is not overly acoustic, fitting your taste")
+
+        if not reasons:
+            reasons.append(
+                f"it shares some traits with songs similar to your taste "
+                f"(genre '{song.genre}', mood '{song.mood}')"
+            )
+
+        intro = f"We recommended '{song.title}' by {song.artist} because"
+        return intro + " " + " and ".join(reasons) + "."
+
 
 def load_songs(csv_path: str) -> List[Dict]:
     """

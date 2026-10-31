@@ -10,19 +10,18 @@
 
 **What task did you give the agent?**
 
-<!-- Describe the goal you asked the agent to accomplish -->
 
 **Prompts used:**
 
-<!-- Paste the key prompts you gave the agent -->
+
 
 **What did the agent generate or change?**
 
-<!-- List the files edited, code generated, or commands run -->
+
 
 **What did you verify or fix manually?**
 
-<!-- Describe anything the agent got wrong or that required human review -->
+
 
 ---
 
@@ -32,12 +31,10 @@
 
 **Which design pattern did you use?**
 
-<!-- e.g., Strategy, Factory, Observer, etc. -->
 
 **How did AI help you brainstorm or implement it?**
 
-<!-- Describe the conversation or suggestions that led to your decision -->
+
 
 **How does the pattern appear in your final code?**
 
-<!-- Point to the relevant class or method -->
